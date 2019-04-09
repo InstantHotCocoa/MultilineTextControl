@@ -1,0 +1,42 @@
+{
+  "main": "webpack.config.js",
+  "scripts": {
+    "clean": "rimraf dist *.vsix vss-extension-release.json src/*js libs",
+    "dev": "webpack-dev-server --hot --progress --colors --content-base ./src --https --port 8888",
+    "dev:http": "webpack-dev-server --hot --progress --colors --content-base ./src --http --port 8888",
+    "package:dev": "node ./scripts/packageDev",
+    "package:dev:http": "node ./scripts/packageDevHttp",
+    "package:release": "node ./scripts/packageRelease",
+    "package:beta": "node ./scripts/packageBeta",
+    "publish:dev": "npm run package:dev && node ./scripts/publishDev",
+    "build:dev": "npm run clean && mkdir dist && webpack --progress --colors --output-path ./dist",
+    "build:release": "npm run clean && mkdir dist && npm run build:styles && webpack --progress --colors --output-path ./dist -p",
+    "publish:release": "npm run build:release && node ./scripts/publishRelease",
+    "test": "karma start --single-run",
+    "postinstall": "typings install"
+  },
+  "devDependencies": {
+    "@types/react": "^16.4.8",
+    "@types/react-dom": "^16.0.7",
+    "copy-webpack-plugin": "^4.5.2",
+    "office-ui-fabric-react": "^6.164.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.4.2",
+    "rimraf": "^2.6.1",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "typings": "^2.1.1",
+    "vss-web-extension-sdk": "^5.141.0",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": ">=3.1.11"
+  },
+  "dependencies": {},
+  "name": "multiline-text-control-extension",
+  "license": "MIT",
+  "description": "VSTS Work Item Form Multiline Text Control Extension",
+  "repository": "",
+  "private": false,
+  "version": "0.0.0"
+}
